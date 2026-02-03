@@ -22,10 +22,10 @@
         display: none;
     }
 
-    /* The Ad at the Bottom */
+    /* THE AD AT THE BOTTOM - BOLDER & OUTLINED */
     #promo-bottom {
         position: fixed;
-        bottom: 40px;
+        bottom: 50px;
         width: 90%;
         left: 50%;
         transform: translateX(-50%);
@@ -38,25 +38,27 @@
     .promo-main {
         color: #fff;
         font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
-        font-weight: 800;
-        font-size: 1.4rem;
-        letter-spacing: 3px;
+        font-weight: 900;
+        font-size: 1.8rem; /* Larger */
+        letter-spacing: 4px;
         text-transform: uppercase;
-        margin-bottom: 5px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        margin-bottom: 8px;
+        /* Sharp dark outline for readability */
+        text-shadow: 3px 3px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000;
     }
 
     .promo-sub {
-        color: #c9a050; /* Mickey's Gold */
+        color: #c9a050; 
         font-family: 'Courier New', Courier, monospace;
-        font-size: 0.8rem;
-        font-weight: bold;
+        font-size: 1rem; /* Larger */
+        font-weight: 900;
         text-transform: uppercase;
-        letter-spacing: 1px;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        letter-spacing: 1.5px;
+        /* Sharp dark outline */
+        text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000;
     }
 
-    /* The Fortune at the Top */
+    /* THE FORTUNE AT THE TOP - BOLDER & OUTLINED */
     #mirror-text {
         position: fixed;
         top: 12%;
@@ -66,12 +68,13 @@
         text-align: center;
         color: #c9a050;
         font-family: 'Courier New', Courier, monospace;
-        font-size: 1.1rem;
-        font-weight: bold;
+        font-size: 1.3rem; /* Larger */
+        font-weight: 900;
         text-transform: uppercase;
         letter-spacing: 2px;
         z-index: 20;
-        text-shadow: 0 0 10px rgba(0,0,0,0.9);
+        /* Sharp dark outline */
+        text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000;
         pointer-events: none;
     }
 
@@ -80,13 +83,12 @@
         padding: 20px 40px;
         background: #c9a050;
         color: #000;
-        border: none;
+        border: 2px solid #000;
         font-family: 'Courier New', Courier, monospace;
         font-weight: bold;
         text-transform: uppercase;
         cursor: pointer;
-        font-size: 1.2rem;
-        box-shadow: 0 0 20px rgba(201, 160, 80, 0.4);
+        font-size: 1.4rem;
     }
 </style>
 </head>
@@ -104,6 +106,7 @@
 </div>
 
 <script>
+    // (The same 150+ fortunes from the previous message go here)
     const fortunes = [
         "ESTABLISHED 1950. YOU? MUCH LATER.",
         "THIS MIRROR DOESN'T LIE. YOU'RE DOING GREAT.",
