@@ -15,6 +15,17 @@ html, body {
     overflow: hidden;
 }
 
+#logo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    max-width: 600px;
+    opacity: 0.3;
+    z-index: 1;
+}
+
 #video {
     position: fixed;
     top: 0;
@@ -23,66 +34,29 @@ html, body {
     height: 100vh;
     object-fit: cover;
     background: #000;
-}
-
-#logo {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 150px;
-    opacity: 0.8;
-    pointer-events: none;
-    z-index: 5;
-}
-
-#prompt {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #000;
-    z-index: 10;
-}
-
-#allowBtn {
-    background: rgba(0,0,0,0.8);
-    border: 2px solid #c9a050;
-    color: #c9a050;
-    padding: 15px 40px;
-    font-size: 1rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-family: 'Courier New', Courier, monospace;
+    z-index: 2;
+    mix-blend-mode: lighten;
 }
 </style>
 </head>
 
 <body>
 
-<div id="prompt">
-    <button id="allowBtn">Allow</button>
-</div>
-
-<video id="video" autoplay playsinline muted></video>
 <img id="logo" src="alb-logo.png" alt="">
+<video id="video" autoplay playsinline muted></video>
 
 <script>
 const video = document.getElementById('video');
-const prompt = document.getElementById('prompt');
-const allowBtn = document.getElementById('allowBtn');
 
-allowBtn.addEventListener('click', async () => {
-    prompt.style.display = 'none';
-
+async function init() {
     const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: 'user' },
         audio: false
     });
-
     video.srcObject = stream;
-});
+}
+
+init();
 </script>
 
 </body>
