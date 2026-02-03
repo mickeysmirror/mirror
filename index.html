@@ -9,6 +9,7 @@
         margin: 0; padding: 0;
         width: 100%; height: 100%;
         background: #000; overflow: hidden;
+        display: flex; justify-content: center; align-items: center;
     }
 
     #video {
@@ -17,6 +18,8 @@
         width: 100vw; height: 100vh;
         object-fit: cover;
         transform: scaleX(-1); 
+        z-index: 1;
+        display: none; /* Hidden until camera starts */
     }
 
     #logo-watermark {
@@ -27,6 +30,7 @@
         opacity: 0.9;
         z-index: 10;
         pointer-events: none;
+        display: none; /* Hidden until camera starts */
     }
 
     #mirror-text {
@@ -46,13 +50,65 @@
         text-shadow: 0 0 10px rgba(0,0,0,0.9);
         pointer-events: none;
     }
+
+    #start-btn {
+        z-index: 100;
+        padding: 20px 40px;
+        background: #c9a050;
+        color: #000;
+        border: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-size: 1.2rem;
+    }
 </style>
 </head>
 <body>
+
+<button id="start-btn">START MIRROR</button>
 
 <video id="video" autoplay playsinline muted></video>
 <img id="logo-watermark" src="alb-logo.png">
 <div id="mirror-text"></div>
 
 <script>
-    const fortunes = 
+    const fortunes = [
+        "ESTABLISHED 1950. YOU? MUCH LATER.",
+        "THIS MIRROR DOESN'T LIE. YOU'RE DOING GREAT.",
+        "HAPPY HOUR UNTIL 7PM. DON'T BE LATE.",
+        "BE NICE OR LEAVE.",
+        "REAL CONVERSATION HAPPENS HERE.",
+        "STILL REAL SINCE 1950.",
+        "YOU LOOK LIKE YOU NEED A COLD ONE."
+    ];
+
+    const startBtn = document.getElementById('start-btn');
+    const video = document.getElementById('video');
+    const logo = document.getElementById('logo-watermark');
+    const textElement = document.getElementById('mirror-text');
+
+    startBtn.addEventListener('click', async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode: 'user' },
+                audio: false
+            });
+            
+            video.srcObject = stream;
+            video.style.display = 'block';
+            logo.style.display = 'block';
+            startBtn.style.display = 'none';
+            
+            const randomIndex = Math.floor(Math.random() * fortunes.length);
+            textElement.innerText = fortunes[randomIndex];
+            
+        } catch (e) {
+            alert("Please allow camera access in your settings.");
+        }
+    });
+</script>
+
+</body>
+</html>
