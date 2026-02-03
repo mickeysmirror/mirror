@@ -22,7 +22,6 @@
         display: none;
     }
 
-    /* THE AD AT THE BOTTOM */
     #promo-bottom {
         position: fixed;
         bottom: 50px;
@@ -33,14 +32,15 @@
         z-index: 10;
         display: none;
         pointer-events: none;
+        transition: opacity 0.5s ease-in-out;
     }
 
     .promo-main {
         color: #fff;
         font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
         font-weight: 900;
-        font-size: 1.8rem;
-        letter-spacing: 4px;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
         text-transform: uppercase;
         margin-bottom: 8px;
         text-shadow: 3px 3px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000;
@@ -49,14 +49,13 @@
     .promo-sub {
         color: #c9a050; 
         font-family: 'Courier New', Courier, monospace;
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 900;
         text-transform: uppercase;
-        letter-spacing: 1.5px;
+        letter-spacing: 1px;
         text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000;
     }
 
-    /* THE FORTUNE AT THE TOP */
     #mirror-text {
         position: fixed;
         top: 12%;
@@ -73,9 +72,9 @@
         z-index: 20;
         text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000;
         pointer-events: none;
+        transition: opacity 0.5s ease-in-out;
     }
 
-    /* THE INITIAL MESSAGE */
     #tap-message {
         color: #c9a050;
         font-family: 'Courier New', Courier, monospace;
@@ -85,6 +84,8 @@
         text-align: center;
         z-index: 100;
         cursor: pointer;
+        padding: 20px;
+        border: 2px solid #c9a050;
     }
 </style>
 </head>
@@ -97,180 +98,11 @@
 <div id="mirror-text"></div>
 
 <div id="promo-bottom">
-    <div class="promo-main">Try ALB Vodka</div>
-    <div class="promo-sub">Voted Best Vodka in the World by Forbes Magazine</div>
+    <div id="promo-main-text" class="promo-main"></div>
+    <div id="promo-sub-text" class="promo-sub"></div>
 </div>
 
 <script>
     const fortunes = [
         "ESTABLISHED 1950. YOU? MUCH LATER.",
-        "THIS MIRROR DOESN'T LIE. YOU'RE DOING GREAT.",
-        "BE NICE OR LEAVE.",
-        "STILL REAL SINCE 1950.",
-        "YOU LOOK LIKE YOU NEED A COLD ONE.",
-        "YOUR DEMO IS BETTER THAN YOU THINK IT IS.",
-        "THE BRIDGE IS FINE. STOP OVERTHINKING THE BRIDGE.",
-        "YOUR FUTURE SELF IS HEADLINING. KEEP DRIVING THE VAN.",
-        "ONE DAY, THIS DIVE BAR WILL BE THE 'EARLY YEARS' CHAPTER.",
-        "YOUR TUNER IS LYING TO YOU. CHECK IT AGAIN.",
-        "THE WORLD DOESN'T NEED ANOTHER LOVE SONG, BUT IT NEEDS YOURS.",
-        "YOUR BEST SONG HASN'T BEEN WRITTEN YET. IT’S COMING.",
-        "YOU’RE ONE CO-WRITE AWAY FROM A HIT.",
-        "DON'T QUIT YOUR DAY JOB—UNTIL THE ROYALTY CHECK CLEARS.",
-        "YOUR 'BIG BREAK' IS CURRENTLY A 'SMALL GIG.' PLAY IT WELL.",
-        "SOMEONE IN THE BACK IS ACTUALLY LISTENING. PLAY FOR THEM.",
-        "YOUR GEAR IS WORTH MORE THAN YOUR CAR. YOU’RE A REAL MUSICIAN.",
-        "THE INDUSTRY IS LOUD. YOUR VOICE IS HONEST. STAY HONEST.",
-        "YOU DIDN'T 'SELL OUT.' YOU 'BOUGHT IN.'",
-        "YOUR HANDS ARE TIRED, BUT YOUR SOUL IS WINNING.",
-        "A BAD SHOW IS JUST A GOOD STORY FOR THE NEXT RECORD.",
-        "YOUR LYRICS ARE TRUE. THAT’S WHY THEY’RE HARD TO SING.",
-        "YOU’RE NOT 'UNSIGNED.' YOU’RE 'INDEPENDENT.'",
-        "THE APPLAUSE TONIGHT IS REAL. TAKE IT HOME WITH YOU.",
-        "KEEP PLAYING. THE SILENCE IS WORSE.",
-        "YOU LOOK BETTER THAN YOUR LAST DECISION.",
-        "YOUR FUTURE SELF SAYS: 'HYDRATE.'",
-        "YOU’RE NOT LOST. YOU’RE PRE-GAMING.",
-        "THIS IS YOUR SIGN TO TEXT BACK (OR DON’T).",
-        "YOUR VIBE IS CORRECT.",
-        "THE MIRROR APPROVES.",
-        "A GOOD STORY IS FORMING.",
-        "TONIGHT’S A 'ONE MORE THEN HOME' NIGHT.",
-        "YOU HAVE MAIN-CHARACTER ENERGY. USE IT WISELY.",
-        "YOU’RE ALLOWED TO HAVE A GOOD TIME.",
-        "GOOD THINGS HAPPEN AFTER THE SECOND LAUGH.",
-        "YOUR LUCK IMPROVES WHEN YOU TIP.",
-        "YOU ARE EXACTLY ON SCHEDULE.",
-        "YOUR NEXT CONVERSATION WILL BE A GOOD ONE.",
-        "YOU CAN LEAVE WHENEVER YOU WANT. THAT’S POWER.",
-        "YOU WILL REMEMBER THIS… IN PARTS.",
-        "YOUR HAIR IS DOING THE THING.",
-        "CONFIDENCE LOOKS GOOD ON YOU.",
-        "SOMEONE IN THIS ROOM THINKS YOU’RE COOL.",
-        "YOUR TASTE IN BARS IS ELITE.",
-        "KEEP IT SIMPLE. KEEP IT HONEST.",
-        "NOTHING GOOD STARTS WITH 'WATCH THIS.'",
-        "YOUR FUTURE IS BRIGHT. YOUR PHONE SCREEN IS BRIGHTER.",
-        "YOU’RE ONE COMPLIMENT AWAY FROM A GREAT NIGHT.",
-        "YOU ARE NOT TOO MUCH. THEY ARE TOO LITTLE.",
-        "YOU’RE FUNNIER THAN YOU THINK. PROVE IT.",
-        "TONIGHT: LESS SCROLLING, MORE LIVING.",
-        "YOUR BEST ACCESSORY IS BEING NORMAL.",
-        "YOU WERE RIGHT TO COME OUT.",
-        "IF YOU’RE READING THIS, YOU’RE STILL HERE. NICE.",
-        "PLOT TWIST: YOU’RE THE RESPONSIBLE FRIEND.",
-        "GOOD LUCK IS JUST GOOD TIMING.",
-        "YOUR NEXT IDEA IS A GOOD ONE. WRITE IT DOWN.",
-        "YOU LOOK LIKE YOU HAVE A SECRET. KEEP IT.",
-        "A LITTLE HONESTY GOES A LONG WAY.",
-        "DON’T ARGUE WITH STRANGERS. ARGUE WITH THE JUKEBOX.",
-        "YOU ARE NOT 'LATE.' YOU ARE 'ARRIVING.'",
-        "DON’T CALL YOUR EX. CALL YOUR FRIEND.",
-        "YOU LOOK LIKE YOU COULD WIN AT POOL.",
-        "BE BOLD. ORDER THE THING YOU ACTUALLY WANT.",
-        "SOMEONE HERE IS ABOUT TO BECOME A STORY.",
-        "YOUR POSTURE JUST IMPROVED. YOU’RE WELCOME.",
-        "YOUR SMILE IS DOING OVERTIME.",
-        "IF YOU CAN READ THIS, YOUR NIGHT ISN’T OVER.",
-        "YOU’RE IN YOUR 'GOOD ERA.'",
-        "THE MIRROR SAYS: RELAX YOUR SHOULDERS.",
-        "YOUR DRINK IS NOT A PERSONALITY. (BUT IT HELPS.)",
-        "YOUR PLAN WILL WORK. EVENTUALLY.",
-        "TONIGHT’S GOAL: LAUGH ONCE, MEAN IT.",
-        "IF IT’S MESSY, MAKE IT MEMORABLE.",
-        "YOUR BEST MOVE IS KINDNESS.",
-        "YOU’RE ONE GREAT SONG AWAY FROM GREATNESS.",
-        "DON’T OVERTHINK IT. UNDERTHINK IT A LITTLE.",
-        "YOU ARE ALLOWED TO BE PROUD OF YOURSELF.",
-        "YOUR FUTURE IS LESS DRAMATIC THAN YOU FEAR.",
-        "YOU’RE NOT AWKWARD. YOU’RE EARLY-STAGE CHARMING.",
-        "THE MIRROR CAN’T FIX YOUR GROUP CHAT. SORRY.",
-        "YOU LOOK LIKE YOU TIP WELL. KEEP THAT STREAK.",
-        "YOUR NEXT 'YES' WILL CHANGE SOMETHING.",
-        "YOUR NEXT 'NO' WILL SAVE YOU.",
-        "YOUR OUTFIT IS A STRONG ARGUMENT.",
-        "YOUR LAUGH WILL START A CHAIN REACTION.",
-        "YOU’RE DOING BETTER THAN YOUR BROWSER HISTORY SUGGESTS.",
-        "YOU CAN’T CONTROL EVERYTHING. START WITH YOUR VOLUME.",
-        "YOUR BEST STORY BEGINS WITH 'SO WE WENT TO THIS PLACE…'",
-        "YOU’RE HERE. THAT COUNTS.",
-        "YOU’RE NOT INVISIBLE. YOU’RE JUST IN SOFT LIGHTING.",
-        "YOUR SHOULDERS SAY 'TENSION.' YOUR FACE SAY 'ICON.'",
-        "THE MIRROR SAYS: TAKE THE COMPLIMENT.",
-        "YOU’RE NOT TOO OLD FOR THIS.",
-        "YOU HAVE EXCELLENT INSTINCTS. LISTEN TO THEM.",
-        "THIS IS YOUR REMINDER: EAT SOMETHING.",
-        "YOUR FUTURE SELF THANKS YOU FOR LEAVING ON A HIGH NOTE.",
-        "YOUR NEXT APOLOGY WILL BE SMALL AND POWERFUL.",
-        "YOU’RE ALLOWED TO CHANGE YOUR MIND.",
-        "SOMEONE IN THIS ROOM NEEDS YOUR JOKE.",
-        "YOUR LUCK IMPROVES NEAR GOOD MUSIC.",
-        "YOUR PHONE MISSES YOU. IGNORE IT.",
-        "YOU’RE ONE 'HEY' AWAY FROM A NEW FRIEND.",
-        "YOUR VIBE IS: UNBOTHERED (TRY IT).",
-        "DON’T WORRY. THE MIRROR KEEPS SECRETS.",
-        "YOUR BEST IDEA HITS AFTER MIDNIGHT.",
-        "TONIGHT’S FORECAST: 70% CHARM, 30% CHAOS.",
-        "YOU’RE NOT OVER IT. YOU’RE ALMOST OVER IT.",
-        "YOUR NEXT DRINK SHOULD HAVE WATER IN THE PLAN.",
-        "YOUR AURA IS LOUD. IN A GOOD WAY.",
-        "YOU ARE NOT THE PROBLEM. UNLESS YOU SKIP TIPPING.",
-        "YOUR NEXT 'SMALL TALK' BECOMES REAL TALK.",
-        "YOU’RE ALLOWED TO BE SILLY. IT’S FREE.",
-        "YOUR FACE SAYS: 'I SURVIVED TODAY.' RESPECT.",
-        "KEEP IT CLASSY. KEEP IT WEIRD.",
-        "IF YOU’RE HAPPY, TELL YOUR FACE.",
-        "YOU’RE EXACTLY WHERE YOU’RE SUPPOSED TO BE.",
-        "A STRANGER WILL SOON OFFER YOU A PIECE OF ADVICE. IGNORE IT.",
-        "YOU WILL SOON FIND SOMETHING YOU THOUGHT WAS LOST.",
-        "AN UNEXPECTED TEXT IS COMING. READ IT TWICE.",
-        "YOUR LUCK IS TIED TO THE NEXT SONG ON THE JUKEBOX.",
-        "A GREAT ADVENTURE IS TWO BLOCKS AWAY.",
-        "YOU WILL SOON BE THE SUBJECT OF A GOOD CONVERSATION.",
-        "THE ANSWER YOU ARE LOOKING FOR IS IN YOUR POCKET.",
-        "YOU WILL SOON DISCOVER A NEW FAVORITE SONG.",
-        "A SMALL ACT OF KINDNESS WILL RETURN TO YOU BY TUESDAY.",
-        "YOUR CREATIVITY IS ABOUT TO PEAK. HAVE A PEN READY.",
-        "YOU WILL SOON TRAVEL SOMEWHERE YOU'VE NEVER BEEN.",
-        "A NEW OPPORTUNITY IS DISGUISED AS A MISTAKE.",
-        "YOU WILL SOON MEET SOMEONE WHO SHARES YOUR WEIRDNESS.",
-        "YOUR HARD WORK IS ABOUT TO BE NOTICED BY THE RIGHT PERSON.",
-        "A FINANCIAL SURPRISE IS COMING. DON'T SPEND IT ALL HERE.",
-        "YOU WILL SOON HAVE A REASON TO CELEBRATE.",
-        "YOUR INTUITION IS SHARP TONIGHT. TRUST IT.",
-        "A LONG-STANDING PROBLEM WILL SOON SOLVE ITSELF.",
-        "YOU ARE ABOUT TO BE VERY LUCKY IN LOVE OR CARDS.",
-        "A CHANGE OF SCENERY WILL DO YOU GOOD.",
-        "YOU WILL SOON RECEIVE A COMPLIMENT FROM A STRANGER.",
-        "YOUR PATIENCE IS ABOUT TO PAY OFF.",
-        "A NEW CHAPTER BEGINS THE MOMENT YOU WALK OUT THE DOOR."
-    ];
-
-    const video = document.getElementById('video');
-    const textElement = document.getElementById('mirror-text');
-    const promo = document.getElementById('promo-bottom');
-    const tapMsg = document.getElementById('tap-message');
-
-    async function startMirror() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({
-                video: { facingMode: 'user' },
-                audio: false
-            });
-            
-            video.srcObject = stream;
-            video.style.display = 'block';
-            promo.style.display = 'block';
-            tapMsg.style.display = 'none';
-            
-            const randomIndex = Math.floor(Math.random() * fortunes.length);
-            textElement.innerText = fortunes[randomIndex];
-            
-        } catch (e) {
-            alert("Please allow camera access to use the mirror.");
-        }
-    }
-</script>
-
-</body>
-</html>
+        "THIS MIRROR DOESN'T LIE. YOU'RE 
