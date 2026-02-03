@@ -21,10 +21,10 @@
 
     #logo-watermark {
         position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 100px;
-        opacity: 0.6;
+        bottom: 20px;
+        right: 20px;
+        width: 200px;
+        opacity: 0.9;
         z-index: 10;
         pointer-events: none;
     }
@@ -36,15 +36,14 @@
         transform: translateX(-50%);
         width: 80%;
         text-align: center;
-        color: #c9a050; /* Mickey's Gold */
+        color: #c9a050;
         font-family: 'Courier New', Courier, monospace;
         font-size: 1.1rem;
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 2px;
         z-index: 20;
-        /* Subtle glow to keep it readable in bar lighting */
-        text-shadow: 0 0 10px rgba(0,0,0,0.9), 0 0 5px rgba(201, 160, 80, 0.5);
+        text-shadow: 0 0 10px rgba(0,0,0,0.9);
         pointer-events: none;
     }
 </style>
@@ -53,49 +52,7 @@
 
 <video id="video" autoplay playsinline muted></video>
 <img id="logo-watermark" src="alb-logo.png">
-
-<!-- This is where the random text will appear -->
 <div id="mirror-text"></div>
 
 <script>
-    // MICKEY'S FORTUNES & REMINDERS
-    const fortunes = [
-        "ESTABLISHED 1950. YOU? MUCH LATER.",
-        "THIS MIRROR DOESN'T LIE. YOU'RE DOING GREAT.",
-        "HAPPY HOUR UNTIL 6PM. DON'T BE LATE.",
-        "BE NICE OR LEAVE.",
-        "REAL CONVERSATION HAPPENS HERE. well, not in the bathroom.",
-        "A NASHVILLE ORIGINAL. JUST LIKE YOU.",
-        "PUT THE PHONE DOWN AFTER THIS PHOTO.",
-        "HISTORY LOOKS GOOD ON YOU.",
-        "STILL REAL SINCE 1950.",
-        "YOU LOOK LIKE YOU NEED A COLD ONE."
-    ];
-
-    function setRandomFortune() {
-        const textElement = document.getElementById('mirror-text');
-        const randomIndex = Math.floor(Math.random() * fortunes.length);
-        textElement.innerText = fortunes[randomIndex];
-    }
-
-    async function init() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({
-                video: { facingMode: 'user' },
-                audio: false
-            });
-            document.getElementById('video').srcObject = stream;
-            
-            // Set the fortune once the camera is ready
-            setRandomFortune();
-        } catch (e) {
-            // If they block the camera, we still show the text
-            document.getElementById('mirror-text').innerText = "ALLOW CAMERA TO SEE THE MIRROR.";
-        }
-    }
-
-    init();
-</script>
-
-</body>
-</html>
+    const fortunes = 
