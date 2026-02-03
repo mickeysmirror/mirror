@@ -71,7 +71,6 @@
         z-index: 20;
         text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000;
         pointer-events: none;
-        transition: opacity 0.5s ease-in-out; /* Smooth fade between messages */
     }
 
     #tap-message {
@@ -97,8 +96,8 @@
 <div id="mirror-text"></div>
 
 <div id="promo-bottom">
-    <div class="promo-main">WORLD'S BEST VODKA. IT'S JUST OUR WELL.</div>
-    <div class="promo-sub">ALB VODKA • VOTED BEST IN THE WORLD BY FORBES</div>
+    <div id="promo-main-text" class="promo-main"></div>
+    <div id="promo-sub-text" class="promo-sub"></div>
 </div>
 
 <script>
@@ -250,22 +249,20 @@
         "WORLD'S BEST VODKA. IT'S JUST OUR WELL."
     ];
 
+    const albAds = [
+        { main: "WORLD'S BEST VODKA. IT'S IN OUR WELL.", sub: "ALB VODKA • VOTED BEST IN THE WORLD BY FORBES" },
+        { main: "ALB VODKA: THE MICKEY'S STANDARD", sub: "VOTED BEST VODKA IN THE WORLD BY FORBES MAGAZINE" },
+        { main: "WE DON'T HAVE A 'CHEAP' WELL.", sub: "WE HAVE ALB. VOTED WORLD'S BEST VODKA." },
+        { main: "ALB VODKA. ALREADY IN YOUR GLASS.", sub: "THE WORLD'S BEST VODKA IS OUR HOUSE POUR." },
+        { main: "OUR WELL IS THE WORLD'S BEST VODKA.", sub: "YOU'RE WELCOME. • ALB VODKA" }
+    ];
+
     const video = document.getElementById('video');
     const textElement = document.getElementById('mirror-text');
     const promo = document.getElementById('promo-bottom');
+    const promoMain = document.getElementById('promo-main-text');
+    const promoSub = document.getElementById('promo-sub-text');
     const tapMsg = document.getElementById('tap-message');
-
-    function showNewFortune() {
-        // Fade out
-        textElement.style.opacity = 0;
-        
-        setTimeout(() => {
-            const randomIndex = Math.floor(Math.random() * fortunes.length);
-            textElement.innerText = fortunes[randomIndex];
-            // Fade back in
-            textElement.style.opacity = 1;
-        }, 500);
-    }
 
     async function startMirror() {
         try {
@@ -279,11 +276,13 @@
             promo.style.display = 'block';
             tapMsg.style.display = 'none';
             
-            // Show first fortune immediately
-            showNewFortune();
+            // Pick ONE random fortune and ONE random ad and set them
+            const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+            textElement.innerText = randomFortune;
             
-            // Set up the cycle to change every 8 seconds
-            setInterval(showNewFortune, 8000);
+            const randomAd = albAds[Math.floor(Math.random() * albAds.length)];
+            promoMain.innerText = randomAd.main;
+            promoSub.innerText = randomAd.sub;
             
         } catch (e) {
             alert("Please allow camera access to use the mirror.");
