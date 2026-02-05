@@ -24,7 +24,7 @@
 
     #promo-bottom {
         position: fixed;
-        bottom: 50px;
+        bottom: 60px;
         width: 90%;
         left: 50%;
         transform: translateX(-50%);
@@ -35,20 +35,20 @@
     }
 
     .promo-main {
-        color: #fff;
+        color: #ffffff; /* Bright White for ALB */
         font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
         font-weight: 900;
-        font-size: 1.5rem;
-        letter-spacing: 2px;
+        font-size: 2.2rem; /* Larger size to stand out */
+        letter-spacing: 5px; /* Premium spacing */
         text-transform: uppercase;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
         text-shadow: 3px 3px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000;
     }
 
     .promo-sub {
-        color: #c9a050; 
+        color: #c9a050; /* Mickey's Gold */
         font-family: 'Courier New', Courier, monospace;
-        font-size: 0.9rem;
+        font-size: 1rem;
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -96,22 +96,22 @@
 <div id="mirror-text"></div>
 
 <div id="promo-bottom">
-    <div id="promo-main-text" class="promo-main"></div>
-    <div id="promo-sub-text" class="promo-sub"></div>
+    <div class="promo-main">ALB VODKA</div>
+    <div class="promo-sub">WE DON'T POUR CHEAP VODKA. WE POUR THE WORLD'S BEST.</div>
 </div>
 
 <script>
     const fortunes = [
-        "MICKEY'S ESTABLISHED IN 1950. YOU? MUCH LATER.",
+        "ESTABLISHED 1950. YOU? MUCH LATER.",
         "THIS MIRROR DOESN'T LIE. YOU'RE DOING GREAT.",
         "BE NICE OR LEAVE.",
-        "MICKEY'S. STILL REAL SINCE 1950.",
+        "STILL REAL SINCE 1950.",
         "YOU LOOK LIKE YOU NEED A COLD ONE.",
         "YOUR DEMO IS BETTER THAN YOU THINK IT IS.",
-    
+        "THE BRIDGE IS FINE. STOP OVERTHINKING THE BRIDGE.",
         "YOUR FUTURE SELF IS HEADLINING. KEEP DRIVING THE VAN.",
         "ONE DAY, THIS DIVE BAR WILL BE THE 'EARLY YEARS' CHAPTER.",
-        
+        "YOUR TUNER IS LYING TO YOU. CHECK IT AGAIN.",
         "THE WORLD DOESN'T NEED ANOTHER LOVE SONG, BUT IT NEEDS YOURS.",
         "YOUR BEST SONG HASN'T BEEN WRITTEN YET. IT’S COMING.",
         "YOU’RE ONE CO-WRITE AWAY FROM A HIT.",
@@ -119,13 +119,13 @@
         "YOUR 'BIG BREAK' IS CURRENTLY A 'SMALL GIG.' PLAY IT WELL.",
         "SOMEONE IN THE BACK IS ACTUALLY LISTENING. PLAY FOR THEM.",
         "YOUR GEAR IS WORTH MORE THAN YOUR CAR. YOU’RE A REAL MUSICIAN.",
-        
+        "THE INDUSTRY IS LOUD. YOUR VOICE IS HONEST. STAY HONEST.",
         "YOU DIDN'T 'SELL OUT.' YOU 'BOUGHT IN.'",
-        "NEVER LOOKIN THE MIRROR AFTER A FEW DRINKS. IT'LL SHAKE YOUR CONFIDENCE.",
+        "YOUR HANDS ARE TIRED, BUT YOUR SOUL IS WINNING.",
         "A BAD SHOW IS JUST A GOOD STORY FOR THE NEXT RECORD.",
         "YOUR LYRICS ARE TRUE. THAT’S WHY THEY’RE HARD TO SING.",
         "YOU’RE NOT 'UNSIGNED.' YOU’RE 'INDEPENDENT.'",
-        
+        "THE APPLAUSE TONIGHT IS REAL. TAKE IT HOME WITH YOU.",
         "KEEP PLAYING. THE SILENCE IS WORSE.",
         "YOU LOOK BETTER THAN YOUR LAST DECISION.",
         "YOUR FUTURE SELF SAYS: 'HYDRATE.'",
@@ -242,26 +242,12 @@
         "A CHANGE OF SCENERY WILL DO YOU GOOD.",
         "YOU WILL SOON RECEIVE A COMPLIMENT FROM A STRANGER.",
         "YOUR PATIENCE IS ABOUT TO PAY OFF.",
-        "A NEW CHAPTER BEGINS THE MOMENT YOU WALK OUT THE DOOR.",
-        "OUR WELL IS THE WORLD'S BEST VODKA. YOU'RE WELCOME.",
-        "ALB VODKA. ALREADY IN YOUR GLASS.",
-        "WE DON'T HAVE A 'CHEAP' WELL. WE HAVE ALB.",
-        "WORLD'S BEST VODKA. IT'S JUST OUR WELL."
-    ];
-
-    const albAds = [
-        { main: "WORLD'S BEST VODKA. IT'S IN OUR WELL.", sub: "ALB VODKA • VOTED BEST IN THE WORLD BY FORBES" },
-        { main: "ALB VODKA: THE MICKEY'S STANDARD", sub: "VOTED BEST VODKA IN THE WORLD BY FORBES MAGAZINE" },
-        { main: "WE DON'T HAVE A 'CHEAP' WELL.", sub: "WE HAVE ALB. VOTED WORLD'S BEST VODKA." },
-        { main: "ALB VODKA. ALREADY IN YOUR GLASS.", sub: "THE WORLD'S BEST VODKA IS OUR HOUSE POUR." },
-        { main: "IN OUR WELL IS THE WORLD'S BEST VODKA.", sub: "YOU'RE WELCOME. • ALB VODKA" }
+        "A NEW CHAPTER BEGINS THE MOMENT YOU WALK OUT THE DOOR."
     ];
 
     const video = document.getElementById('video');
     const textElement = document.getElementById('mirror-text');
     const promo = document.getElementById('promo-bottom');
-    const promoMain = document.getElementById('promo-main-text');
-    const promoSub = document.getElementById('promo-sub-text');
     const tapMsg = document.getElementById('tap-message');
 
     async function startMirror() {
@@ -276,13 +262,9 @@
             promo.style.display = 'block';
             tapMsg.style.display = 'none';
             
-            // Pick ONE random fortune and ONE random ad and set them
+            // Pick ONE random fortune and set it
             const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
             textElement.innerText = randomFortune;
-            
-            const randomAd = albAds[Math.floor(Math.random() * albAds.length)];
-            promoMain.innerText = randomAd.main;
-            promoSub.innerText = randomAd.sub;
             
         } catch (e) {
             alert("Please allow camera access to use the mirror.");
